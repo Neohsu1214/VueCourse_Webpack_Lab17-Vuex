@@ -20,7 +20,7 @@ export const store = new Vuex.Store({
     mutations: {
         increment: (state, payload) => { // 也可以寫成 increment: function(state) { state.counter++; }
             if (payload) {
-                
+                state.counter += payload;
             } else {
                 state.counter++;
             }
@@ -42,17 +42,17 @@ export const store = new Vuex.Store({
             context.commit('decrement', payload); // 轉呼叫 mutations函式了！
         },
         // 以下非同步叫用的函式就直接用簡化語法寫啦！
-        asyncIncrement: ({ commit }) => { 
+        asyncIncrement: ({ commit }, payload) => {  // 請見 AnotherCounter，我們讓 AsyncIncrement 傳兩個參數進來，此時取用就變成了 payload.參數名稱
             // 模擬存取 http 的非同步延遲
             setTimeout(()=>{ 
-                commit('increment'); // 轉呼叫 mutations函式了！
-            }, 500);
+                commit('increment', payload.by); // 轉呼叫 mutations函式了！
+            }, payload.duration);
         },
-        asyncDecrement: ({ commit }) => { 
+        asyncDecrement: ({ commit }, payload) => { // 請見 AnotherCounter，我們讓 AsyncIncrement 傳兩個參數進來，此時取用就變成了 payload.參數名稱
             // 模擬存取 http 的非同步延遲
             setTimeout(()=>{ 
-                commit('decrement'); // 轉呼叫 mutations函式了！
-            }, 500);
+                commit('decrement', payload.by); // 轉呼叫 mutations函式了！
+            }, payload.duration);
         }
     }
 });

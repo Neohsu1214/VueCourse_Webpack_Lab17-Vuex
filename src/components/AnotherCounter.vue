@@ -1,9 +1,11 @@
 <template>
     <div>
+        <!-- 當 Actions函式要帶入一個值時，可增加一個參數 payload -->
         <button class="btn btn-primary" @click="increment(100)">Increment</button>
         <button class="btn btn-primary" @click="decrement(50)">Decrement</button>
-        <button class="btn btn-primary" @click="asyncIncrement">Async Increment</button>
-        <button class="btn btn-primary" @click="asyncDecrement">Async Decrement</button>
+        <!-- 當 Actions函式要帶入兩個以上的值時，payload就要改用 JS Object 方式建立！ -->
+        <button class="btn btn-primary" @click="asyncIncrement({by: 100, duration: 500})">Async Increment</button>
+        <button class="btn btn-primary" @click="asyncDecrement({by: 50, duration: 500})">Async Decrement</button>
     </div>
 </template>
 
