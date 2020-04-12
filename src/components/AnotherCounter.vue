@@ -44,8 +44,21 @@
         } 
         */
 
-       //------------ 將 Mutations 全面改用 Actions ！
-       methods: mapActions(['increment', 'decrement', 'asyncIncrement', 'asyncDecrement']) // 注意！不能寫成 methods: { mapMutations([]) } 因為 mapMutations 回傳的是 methods 物件
+        //------------ 將 Mutations 全面改用 Actions 取代！
+        /* 改用 mapActions 來取用同樣名稱的 action函式
+        methods: {
+            increment() {
+                // 叫用 actions函式 的方法為 dispatch('actions函式名稱')
+                this.$store.dispatch('increment'); // 異動 store 中資料的方法 this.$store.commit('mutation函式名稱')
+            },
+            decrement() {
+                // 叫用 actions函式 的方法為 dispatch('actions函式名稱')
+                this.$store.dispatch('decrement');
+            }
+        }
+        */
+
+        methods: mapActions(['increment', 'decrement', 'asyncIncrement', 'asyncDecrement']) // 注意！不能寫成 methods: { mapMutations([]) } 因為 mapMutations 回傳的是 methods 物件
 
     }
 </script>
