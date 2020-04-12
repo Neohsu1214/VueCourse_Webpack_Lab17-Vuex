@@ -24,5 +24,27 @@ export const store = new Vuex.Store({
         decrement: (state) => {
             state.counter--;
         }
+    },
+    // actions函式可以做到非同步資料異動，但最後要異動資料時，還是去執行 mutations函式 context.commit('mutations函式名稱')
+    actions: {
+        increment: (context) => { // 因為只有一個context在進行，所以也可以簡化語法為 ({commit}) => {commit('mutations函式名稱')} 
+            context.commit('increment'); // 轉呼叫 mutations函式了！
+        },
+        decrement: (context) => { // 因為只有一個context在進行，所以也可以簡化語法為 ({commit}) => {commit('mutations函式名稱')}
+            context.commit('decrement'); // 轉呼叫 mutations函式了！
+        },
+        // 以下非同步叫用的函式就直接用簡化語法寫啦！
+        asyncIncrement: ({ commit }) => { 
+            // 模擬存取 http 的非同步延遲
+            setTimeout(()=>{ 
+                commit('increment'); // 轉呼叫 mutations函式了！
+            }, 500);
+        },
+        asyncDecrement: ({ commit }) => { 
+            // 模擬存取 http 的非同步延遲
+            setTimeout(()=>{ 
+                commit('decrement'); // 轉呼叫 mutations函式了！
+            }, 500);
+        }
     }
 });
