@@ -8,6 +8,10 @@
                 <hr>
                 <app-counter></app-counter>
                 <app-another-counter></app-another-counter>
+                <hr>
+                <!-- 以下示範如何透過 v-model 來跟 vuex 中的資料進行雙向綁定：使用computed並實作 get() 與 set() -->
+                <input type="text" v-model="someValue">
+                <p> SomeValue: {{ someValue }} </p>
             </div>
         </div>
     </div>
@@ -23,6 +27,19 @@
         data() {
             return {
                 
+            }
+        },
+        computed: {
+            // 透過 v-model 來跟 vuex 中的資料進行雙向綁定：使用computed並實作 get() 與 set() 
+            someValue: {
+                get() { // 即 get: function() {}
+                    // 叫用 vuex 的 getters函式
+                    return this.$store.getters.someValue;
+                }, 
+                set(newValue) {
+                    // 叫用 vuex 的 actions函式
+                    this.$store.dispatch('updateSomeValue', newValue); // 因為是叫用 actions函式，所以是用 dispatch
+                }
             }
         },
         components: {
