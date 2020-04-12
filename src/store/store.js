@@ -16,7 +16,7 @@ export const store = new Vuex.Store({
             return state.counter + ' Clicks';
         }
     },
-    // mutations 只能用來 寫值
+    // mutations 只能用來 寫值。 此外！ mutations只適用於資料異動是『Synchrously(同步的)』，所以不適合用來丟 ajax request
     mutations: {
         increment: (state) => { // 也可以寫成 increment: function(state) { state.counter++; }
             state.counter++;
