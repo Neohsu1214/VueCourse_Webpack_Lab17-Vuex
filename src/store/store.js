@@ -10,6 +10,9 @@ export const store = new Vuex.Store({
     getters: {
         doubleCounter: function(state) {  // 也可以簡寫成 doubleCounter: (state) => { return state.counter * 2; }
             return state.counter * 2;
+        },
+        stringCounter: (state) => {
+            return state.counter + ' Clicks';
         }
     }
 });
