@@ -33,10 +33,15 @@ const mutations = {
 }
 
 const actions = {
-    increment: (context, payload) => { // 因為只有一個context在進行，所以也可以簡化語法為 ({commit}) => {commit('mutations函式名稱')} 
+    increment: (context, payload) => { 
+        /**
+         * 因為只有一個context在進行，而且我們只需要用到 context.commit 這個 function
+         * ES6支援將簡化語法為 ({commit}) => {commit('mutations函式名稱')} 
+         * 箭頭函式（）=>的用法與簡化規則詳見：https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+         */
         context.commit('increment', payload); // 轉呼叫 mutations函式了！
     },
-    decrement: (context, payload) => { // 因為只有一個context在進行，所以也可以簡化語法為 ({commit}) => {commit('mutations函式名稱')}
+    decrement: (context, payload) => { // 因為只有一個context在進行，所以也可以簡化語法為 ({commit}) => {commit('mutations函式名稱')} 詳見：https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Functions/Arrow_functions
         context.commit('decrement', payload); // 轉呼叫 mutations函式了！
     },
     // 以下非同步叫用的函式就直接用簡化語法寫啦！
